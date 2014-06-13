@@ -1,0 +1,28 @@
+module pp
+
+imports
+
+	libstratego-gpp
+	lib/runtime/tmpl/pp
+	Common.pp.generated
+	TAL.pp.generated
+
+rules
+	
+  pp-TAL-string =
+    prettyprint-Start
+    ; !V([], <id>)
+    ; box2text-string(|120)
+      
+  pp-partial-TAL-string =
+    prettyprint-example
+    ; !V([], <id>)
+    ; box2text-string(|120)
+      
+  pp-debug :
+    ast -> result
+    with
+       result := <pp-TAL-string> ast
+    <+ <bottomup(try(not(is-string); not(is-list); not(pp-TAL-string); debug(!"cannot pp ")))> ast
+    ;  result := ""
+

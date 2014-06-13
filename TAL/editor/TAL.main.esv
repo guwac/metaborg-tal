@@ -1,0 +1,31 @@
+module TAL.main
+
+imports
+  TAL-Colorer
+  TAL-Completions
+  TAL-Folding
+  TAL-Menus
+  TAL-Refactorings
+  TAL-References
+  TAL-Syntax
+  TAL-Views
+
+language General properties
+  
+  name:          TAL
+  id:            TAL
+  extends:       Root
+  
+  description:   "Spoofax-generated editor for the TAL language"
+  url:           http://strategoxt.org
+  
+  extensions:    tal
+  table:         include/TAL.tbl
+  start symbols: Start
+  
+  provider:      include/tal.ctree
+  provider:      include/tal-java.jar
+  
+  observer:      editor-analyze (multifile)
+  
+  on save:       editor-save

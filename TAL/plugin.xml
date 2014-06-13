@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="tal"
+            description="TAL"
+            language="TAL"
+            derivedFrom="DynamicRoot"
+            validator="TAL.TALValidator"
+            validatorClass="TAL.TALValidator"
+      ></language>
+   </extension>
+   <extension
+         id="TAL.parser"
+         name="TAL Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="TAL.TALParseController"
+            language="TAL">
+      </parser>
+   </extension>    
+</plugin>

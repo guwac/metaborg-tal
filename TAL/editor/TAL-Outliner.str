@@ -1,0 +1,13 @@
+module editor/TAL-Outliner
+
+imports
+  
+  include/TAL
+  lib/runtime/editor/outline-library
+  lib/runtime/editor/origins
+  editor/TAL-Outliner.generated
+
+rules
+  
+  to-outline-label = fail
+  
