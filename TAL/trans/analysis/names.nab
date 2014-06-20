@@ -1,0 +1,10 @@
+module analysis/names
+
+imports
+	
+	include/TAL
+	
+namespaces
+	
+binding rules
+

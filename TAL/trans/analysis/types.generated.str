@@ -1,0 +1,139 @@
+module trans/analysis/types.generated
+
+imports
+  
+  lib/runtime/nabl/-
+  lib/runtime/task/-
+  lib/runtime/types/-
+  lib/runtime/properties/-
+  lib/runtime/relations/-
+
+imports
+
+  include/TAL
+  
+signature constructors
+  
+  IntTy : Type
+  StringTy : Type
+  BoolTy : Type
+  
+  
+rules // functions 
+  
+
+rules // relations
+  
+
+rules // rules
+  
+  create-type-task(|ctx) :
+    NumVal(_) -> <task-create-id(|ctx,[x367])> x367
+    where 
+      x367 := <type-is(|ctx)> IntTy()
+  
+  create-type-task(|ctx) :
+    StringVal(_) -> <task-create-id(|ctx,[x368])> x368
+    where 
+      x368 := <type-is(|ctx)> StringTy()
+  
+  create-type-task(|ctx) :
+    Feature("language") -> <task-create-id(|ctx,[x369])> x369
+    where 
+      x369 := <type-is(|ctx)> StringTy()
+  
+  create-type-task(|ctx) :
+    Eq(e1, e2) -> <task-create-id(|ctx,[x370])> x370
+    where 
+      ty1 := <type-task(|ctx)> e1;
+      ty2 := <type-task(|ctx); task-create-id(|ctx, [ty1])> e2;
+      eq150 := <type-match(|ctx, ty2); task-create-id(|ctx, [ty2])> ty1;
+      <task-create-error-on-failure(|ctx, eq150, ["incompatible type"])> e2;
+      x370 := <type-is(|ctx); task-create-id(|ctx, [eq150])> BoolTy()
+  
+  create-type-task(|ctx) :
+    Neq(e1, e2) -> <task-create-id(|ctx,[x370])> x370
+    where 
+      ty1 := <type-task(|ctx)> e1;
+      ty2 := <type-task(|ctx); task-create-id(|ctx, [ty1])> e2;
+      eq151 := <type-match(|ctx, ty2); task-create-id(|ctx, [ty2])> ty1;
+      <task-create-error-on-failure(|ctx, eq151, ["incompatible type"])> e2;
+      x370 := <type-is(|ctx); task-create-id(|ctx, [eq151])> BoolTy()
+  
+  create-type-task(|ctx) :
+    Lte(e1, e2) -> <task-create-id(|ctx,[x373])> x373
+    where 
+      x371 := <type-task(|ctx)> e1;
+      eq152 := <type-match(|ctx, IntTy()); task-create-id(|ctx, [x371])> x371;
+      <task-create-error-on-failure(|ctx, eq152, ["integer expression expected"])> e1;
+      x372 := <type-task(|ctx); task-create-id(|ctx, [eq152])> e2;
+      eq153 := <type-match(|ctx, IntTy()); task-create-id(|ctx, [x372])> x372;
+      <task-create-error-on-failure(|ctx, eq153, ["integer expression expected"])> e2;
+      x373 := <type-is(|ctx); task-create-id(|ctx, [eq153])> BoolTy()
+  
+  create-type-task(|ctx) :
+    Lt(e1, e2) -> <task-create-id(|ctx,[x373])> x373
+    where 
+      x371 := <type-task(|ctx)> e1;
+      eq154 := <type-match(|ctx, IntTy()); task-create-id(|ctx, [x371])> x371;
+      <task-create-error-on-failure(|ctx, eq154, ["integer expression expected"])> e1;
+      x372 := <type-task(|ctx); task-create-id(|ctx, [eq154])> e2;
+      eq155 := <type-match(|ctx, IntTy()); task-create-id(|ctx, [x372])> x372;
+      <task-create-error-on-failure(|ctx, eq155, ["integer expression expected"])> e2;
+      x373 := <type-is(|ctx); task-create-id(|ctx, [eq155])> BoolTy()
+  
+  create-type-task(|ctx) :
+    Gte(e1, e2) -> <task-create-id(|ctx,[x373])> x373
+    where 
+      x371 := <type-task(|ctx)> e1;
+      eq156 := <type-match(|ctx, IntTy()); task-create-id(|ctx, [x371])> x371;
+      <task-create-error-on-failure(|ctx, eq156, ["integer expression expected"])> e1;
+      x372 := <type-task(|ctx); task-create-id(|ctx, [eq156])> e2;
+      eq157 := <type-match(|ctx, IntTy()); task-create-id(|ctx, [x372])> x372;
+      <task-create-error-on-failure(|ctx, eq157, ["integer expression expected"])> e2;
+      x373 := <type-is(|ctx); task-create-id(|ctx, [eq157])> BoolTy()
+  
+  create-type-task(|ctx) :
+    Gt(e1, e2) -> <task-create-id(|ctx,[x373])> x373
+    where 
+      x371 := <type-task(|ctx)> e1;
+      eq158 := <type-match(|ctx, IntTy()); task-create-id(|ctx, [x371])> x371;
+      <task-create-error-on-failure(|ctx, eq158, ["integer expression expected"])> e1;
+      x372 := <type-task(|ctx); task-create-id(|ctx, [eq158])> e2;
+      eq159 := <type-match(|ctx, IntTy()); task-create-id(|ctx, [x372])> x372;
+      <task-create-error-on-failure(|ctx, eq159, ["integer expression expected"])> e2;
+      x373 := <type-is(|ctx); task-create-id(|ctx, [eq159])> BoolTy()
+  
+  create-type-task(|ctx) :
+    And(e1, e2) -> <task-create-id(|ctx,[x376])> x376
+    where 
+      x374 := <type-task(|ctx)> e1;
+      eq160 := <type-match(|ctx, BoolTy()); task-create-id(|ctx, [x374])> x374;
+      <task-create-error-on-failure(|ctx, eq160, ["boolean expression expected"])> e1;
+      x375 := <type-task(|ctx); task-create-id(|ctx, [eq160])> e2;
+      eq161 := <type-match(|ctx, BoolTy()); task-create-id(|ctx, [x375])> x375;
+      <task-create-error-on-failure(|ctx, eq161, ["boolean expression expected"])> e2;
+      x376 := <type-is(|ctx); task-create-id(|ctx, [eq161])> BoolTy()
+  
+  create-type-task(|ctx) :
+    Or(e1, e2) -> <task-create-id(|ctx,[x376])> x376
+    where 
+      x374 := <type-task(|ctx)> e1;
+      eq162 := <type-match(|ctx, BoolTy()); task-create-id(|ctx, [x374])> x374;
+      <task-create-error-on-failure(|ctx, eq162, ["boolean expression expected"])> e1;
+      x375 := <type-task(|ctx); task-create-id(|ctx, [eq162])> e2;
+      eq163 := <type-match(|ctx, BoolTy()); task-create-id(|ctx, [x375])> x375;
+      <task-create-error-on-failure(|ctx, eq163, ["boolean expression expected"])> e2;
+      x376 := <type-is(|ctx); task-create-id(|ctx, [eq163])> BoolTy()
+  
+  create-type-task(|ctx) :
+    Not(e) -> <task-create-id(|ctx,[x378])> x378
+    where 
+      x377 := <type-task(|ctx)> e;
+      eq164 := <type-match(|ctx, BoolTy()); task-create-id(|ctx, [x377])> x377;
+      <task-create-error-on-failure(|ctx, eq164, ["boolean expression expected"])> e;
+      x378 := <type-is(|ctx); task-create-id(|ctx, [eq164])> BoolTy()
+  
+
+rules // projections
+  
