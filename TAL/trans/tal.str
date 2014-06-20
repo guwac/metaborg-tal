@@ -15,10 +15,9 @@ imports
 	lib/runtime/task/-
 	lib/runtime/analysis/-
 	lib/runtime/editor/-
-	names
-	types.generated
-	// check
-	// generate
+	analysis/names
+	analysis/types.generated
+  codegen/builder
 	pp
 
 rules // Analysis
