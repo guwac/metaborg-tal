@@ -1,2 +1,2 @@
 this = twitter.sample()
-this := filter(this, 0)
+this := filter(this, language == "en")
