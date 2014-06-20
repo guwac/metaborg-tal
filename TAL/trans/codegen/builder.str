@@ -1,0 +1,11 @@
+module codegen/builder
+
+imports codegen/tojava
+
+rules
+  
+  editor-to-java:
+    (selected, position, ast, path, project-path) -> (filename, result)
+    with
+      filename := <guarantee-extension(|".java")> path;
+      result   := <script-to-java> ast
